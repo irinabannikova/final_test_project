@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 def browser():
     browser = webdriver.Chrome()
     yield browser
-    browser.quit()
+    # browser.quit()
 
 
 def pytest_addoption(parser):
