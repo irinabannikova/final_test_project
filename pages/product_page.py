@@ -1,5 +1,8 @@
 from .base_page import BasePage
 from .locators import *
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 
@@ -18,7 +21,11 @@ class ProductPage(BasePage):
         product_price = self.browser.find_element(*CatalogPageLocators.PRODUCT_PRICE).text
         # Проверяем, что цена товара присутствует в сообщении со стоимостью корзины
         assert message_basket_total == product_price, "No product price in the message"
-
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*CatalogPageLocators.MESSAGE_ABOUT_ADDING), \
+       "Success message is presented, but should not be"
+    
+    
         
 
   
